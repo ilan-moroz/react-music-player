@@ -14,3 +14,15 @@ export class RouteNotFoundError extends ClientError{
         super(404,`route ${route} not found`)
     }
 }
+
+export class VideoNotFoundError extends ClientError{
+    public constructor(videoID:string){
+        super(404,`video id: ${videoID} not found`)
+    }
+}
+
+export class UserNotLoggedError extends ClientError{
+    public constructor(){
+        super(401,`PLS login...`)
+    }
+}
