@@ -1,0 +1,6 @@
+.MainPage {
+  text-align: center;
+}
+.Box:hover {
+  cursor: pointer;
+}
