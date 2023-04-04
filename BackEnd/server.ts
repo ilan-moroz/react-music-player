@@ -2,6 +2,7 @@ import { fileUpload } from 'express-fileupload';
 import cors from 'cors'
 import express from 'express'
 import bodyParser from 'body-parser';
+import router from './Routes/VideoRoutes';
 
 //create server
 const server = express()
@@ -22,3 +23,8 @@ server.use(fileUpload({createParentPath: true}))
 server.use(bodyParser.json()) 
 
 // how to use the routes
+server.use('api/v1/videos/',router)
+
+// handle error(route not exist)
+
+// start the server

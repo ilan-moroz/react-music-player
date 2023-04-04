@@ -9,13 +9,13 @@ import { request } from 'http'
 
 const router = express.Router()
 
-router.post('/addVideo',async(request:Request,response:Response,next:NextFunction)=>{
+router.post('addVideo',async(request:Request,response:Response,next:NextFunction)=>{
     const body = request.body
     console.log(body)
     response.status(201).json("{'msg':'video uploaded'}")
 })
 
-router.delete('/deleVideo/:id',async(request:Request,response:Response,next:NextFunction)=>{
+router.delete('deleVideo/:id',async(request:Request,response:Response,next:NextFunction)=>{
     const videoId = +request.params.id
     if(videoId===null || videoId<1){
         response.status(404).json("{'msg':'Video not found'}")
@@ -25,7 +25,9 @@ router.delete('/deleVideo/:id',async(request:Request,response:Response,next:Next
 })
 
 router.get(
-    '/videoList',async(request:Request,response:Response,next:NextFunction)=>{
+    'videoList',async(request:Request,response:Response,next:NextFunction)=>{
         response.status(200).json()
     } 
 )
+
+export default router
