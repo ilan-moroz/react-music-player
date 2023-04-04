@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1"
   }
