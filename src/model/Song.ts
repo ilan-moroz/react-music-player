@@ -4,6 +4,7 @@ class Song {
   public songImg: string
   public category: string
   public songInfo: string
+  // public videoFile:string
   constructor(
     url: string,
     songName: string,
