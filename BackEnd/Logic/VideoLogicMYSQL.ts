@@ -1,4 +1,6 @@
+import { OkPacket } from 'mysql'
 import Song from '../../src/model/Song'
+import Category from '../../src/model/Cat'
 import dal_mysql from '../Utils/dal_mysql'
 
 const addSong = (newSong: Song) => {}
@@ -33,6 +35,26 @@ const createCategoriesTable = () => {
   return dal_mysql.execute(SQLcommand)
 }
 
+//categories
+const addCategory = async (newCategory: string) => {
+  //SQL command for adding new category
+  const SQLcommand = `INSERT INTO youtube.category (name) VALUES ('${newCategory}');`
+  console.log('sql>', SQLcommand)
+  const response: OkPacket = await dal_mysql.execute(SQLcommand)
+  const categoryId = response.insertId
+  console.log('New Id', categoryId, ' Message:', response.message)
+  return categoryId
+}
+
+const deleteCategory = (id: number) => {}
+
+const updateCategory = (cat: typeof Category) => {}
+
+const getAllCategories = async () => {
+  const SQLcommand = `SELECT * FROM youtube.category`
+  return await dal_mysql.execute(SQLcommand)
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   addSong,
@@ -42,4 +64,8 @@ export default {
   getAllSongs,
   createSongsTable,
   createCategoriesTable,
+  addCategory,
+  deleteCategory,
+  updateCategory,
+  getAllCategories,
 }
