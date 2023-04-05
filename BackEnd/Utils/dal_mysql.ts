@@ -23,4 +23,5 @@ const execute = (sql: string): Promise<any> => {
   })
 }
 
-export default execute
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { execute }
