@@ -3,6 +3,7 @@ import cors from 'cors'
 import express from 'express'
 import bodyParser from 'body-parser';
 import router from './Routes/VideoRoutes';
+import loginRouter from './Routes/LoginRoutes';
 
 //create server
 const server = express()
@@ -24,6 +25,7 @@ server.use(bodyParser.json())
 
 // how to use the routes
 server.use('api/v1/videos/',router)
+server.use('api/v1/users/',loginRouter)
 
 // handle error(route not exist)
 
