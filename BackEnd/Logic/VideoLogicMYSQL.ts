@@ -21,6 +21,7 @@ const createSongsTable = () => {
     videoFile VARCHAR(45) NOT NULL,
     PRIMARY KEY(id));`
   const response = dal_mysql.execute(SQLcommand)
+  console.log(response)
 }
 
 const createCategoriesTable = () => {}
