@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import router from './Routes/VideoRoutes'
 import loginRouter from './Routes/LoginRoutes'
 import config from './Utils/Config'
+import logic from './Logic/VideoLogicMYSQL'
 
 //create server
 const server = express()
@@ -27,6 +28,10 @@ server.use(bodyParser.json())
 // how to use the routes
 server.use('api/v1/videos/', router)
 server.use('api/v1/users/', loginRouter)
+
+// create table if it doesn't exist
+console.log('check if table exists')
+logic.createSongsTable()
 
 // handle error(route not exist)
 
