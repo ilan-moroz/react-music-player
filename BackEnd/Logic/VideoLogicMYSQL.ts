@@ -20,10 +20,18 @@ const createSongsTable = () => {
     category INT NOT NULL,
     videoFile VARCHAR(45) NOT NULL,
     PRIMARY KEY(id));`
-  const response = dal_mysql.execute(SQLcommand)
+  return dal_mysql.execute(SQLcommand)
 }
 
-const createCategoriesTable = () => {}
+const createCategoriesTable = () => {
+  const SQLcommand = `
+    CREATE TABLE IF NOT EXISTS youtube.category (
+        id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(45) NOT NULL,
+        PRIMARY KEY (id),
+        UNIQUE INDEX name_UNIQUE (name ASC) VISIBLE);`
+  return dal_mysql.execute(SQLcommand)
+}
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

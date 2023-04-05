@@ -32,6 +32,7 @@ server.use('api/v1/users/', loginRouter)
 // create table if it doesn't exist
 console.log('check if table exists')
 logic.createSongsTable()
+logic.createCategoriesTable()
 
 // handle error(route not exist)
 
