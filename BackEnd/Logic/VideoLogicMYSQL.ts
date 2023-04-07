@@ -14,15 +14,23 @@ const addSong = async (newSong: Song) => {
   return result.insertId
 }
 
-const updateSong = (song: Song) => {}
+const updateSong = async (song: Song) => {
+  const SQLcommand = `
+    UPDATE youtube.songs 
+    SET url = '${song.url}', songName = '${song.songName}',
+    songImg = '${song.songImg}', category = ${song.category},
+    videoFile = '${song.videoFile}' 
+    WHERE (id = ${song.id});`
+  return await dal_mysql.execute(SQLcommand)
+}
 
 const deleteSong = (id: number) => {
   const SQLcommand = `DELETE FROM youtube.songs WHERE id=${id}`
-  dal_mysql.execute(SQLcommand)
-  return true
+  return dal_mysql.execute(SQLcommand)
 }
-const getSongById = (id: number) => {}
-
+const getSongById = async (id: number) => {
+  return await dal_mysql.execute(`SELECT * FROM youtube.songs WHERE id =${id}`)
+}
 const getAllSongs = async () => {
   const SQLcommand = `SELECT * FROM youtube.songs`
   return await dal_mysql.execute(SQLcommand)

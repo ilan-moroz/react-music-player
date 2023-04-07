@@ -12,10 +12,25 @@ router.post(
   },
 )
 
+router.put(
+  '/update',
+  async (request: Request, response: Response, next: NextFunction) => {
+    response.status(202).json(await VideoLogic.updateSong(request.body))
+  },
+)
+
 router.get(
   '/allSongs',
   async (request: Request, response: Response, next: NextFunction) => {
     response.status(202).json(await VideoLogic.getAllSongs())
+  },
+)
+
+//get song by id
+router.get(
+  '/getSong/:id',
+  async (request: Request, response: Response, next: NextFunction) => {
+    response.status(200).json(await VideoLogic.getSongById(+request.params.id))
   },
 )
 
