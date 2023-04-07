@@ -45,6 +45,13 @@ router.get(
 )
 
 router.get(
+  '/allCat',
+  async (request: Request, response: Response, next: NextFunction) => {
+    response.status(200).json(await VideoLogicMYSQL.getAllCategories())
+  },
+)
+
+router.get(
   '/',
   async (request: Request, response: Response, next: NextFunction) => {
     response.status(200).json('Controller working !!!')
