@@ -27,8 +27,8 @@ server.use(fileUpload({ createParentPath: true }))
 server.use(bodyParser.json())
 
 // how to use the routes
-server.use('/videos', router)
-server.use('api/v1/users/', loginRouter)
+server.use('/api/v1/videos', router)
+server.use('/api/v1/users', loginRouter)
 
 // create table if it doesn't exist
 console.log('check if table exists')
