@@ -1,8 +1,8 @@
-import cors from 'cors'
+// import cors from 'cors'
 import express, { NextFunction, Request, Response } from 'express'
-import fileUpload from 'express-fileupload'
-import config from '../Utils/Config'
-import { request } from 'http'
+// import fileUpload from 'express-fileupload'
+// import config from '../Utils/Config'
+// import { request } from 'http'
 import VideoLogicMYSQL from '../Logic/VideoLogicMYSQL'
 
 const router = express.Router()
