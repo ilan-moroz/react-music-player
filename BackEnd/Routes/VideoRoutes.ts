@@ -16,24 +16,24 @@ router.post(
   },
 )
 
-router.delete(
-  'deleteVideo/:id',
-  async (request: Request, response: Response, next: NextFunction) => {
-    const videoId = +request.params.id
-    if (videoId === null || videoId < 1) {
-      response.status(404).json("{'msg':'Video not found'}")
-    }
-    console.log('deleting....')
-    response.status(204)
-  },
-)
+// router.delete(
+//   '/deleteVideo/:id',
+//   async (request: Request, response: Response, next: NextFunction) => {
+//     const videoId = +request.params.id
+//     if (videoId === null || videoId < 1) {
+//       response.status(404).json("{'msg':'Video not found'}")
+//     }
+//     console.log('deleting....')
+//     response.status(204)
+//   },
+// )
 
-router.get(
-  'videoList',
-  async (request: Request, response: Response, next: NextFunction) => {
-    response.status(200).json("{'msg':'Video'}")
-  },
-)
+// router.get(
+//   'videoList',
+//   async (request: Request, response: Response, next: NextFunction) => {
+//     response.status(200).json("{'msg':'Video'}")
+//   },
+// )
 router.get(
   '/newCat/:catName',
   async (request: Request, response: Response, next: NextFunction) => {
