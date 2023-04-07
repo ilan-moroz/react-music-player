@@ -12,8 +12,7 @@ router.post(
   async (request: Request, response: Response, next: NextFunction) => {
     const body = request.body
     console.log(body)
-    // response.status(201).json("{'msg':'video uploaded'}")
-    response.status(200)
+    response.status(200).json(await VideoLogicMYSQL.addSong(body))
   },
 )
 
