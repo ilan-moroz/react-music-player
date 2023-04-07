@@ -1,9 +1,5 @@
-// import cors from 'cors'
 import express, { NextFunction, Request, Response } from 'express'
-// import fileUpload from 'express-fileupload'
-// import config from '../Utils/Config'
-// import { request } from 'http'
-import VideoLogicMYSQL from '../Logic/VideoLogicMYSQL'
+import VideoLogic from '../Logic/VideoLogicMYSQL'
 
 const router = express.Router()
 
@@ -12,42 +8,40 @@ router.post(
   async (request: Request, response: Response, next: NextFunction) => {
     const newSong = request.body
     console.log(newSong)
-    response.status(200).json(await VideoLogicMYSQL.addSong(newSong))
+    response.status(201).json(await VideoLogic.addSong(newSong))
   },
 )
 
-// router.delete(
-//   '/deleteVideo/:id',
-//   async (request: Request, response: Response, next: NextFunction) => {
-//     const videoId = +request.params.id
-//     if (videoId === null || videoId < 1) {
-//       response.status(404).json("{'msg':'Video not found'}")
-//     }
-//     console.log('deleting....')
-//     response.status(204)
-//   },
-// )
+router.get(
+  '/allSongs',
+  async (request: Request, response: Response, next: NextFunction) => {
+    response.status(202).json(await VideoLogic.getAllSongs())
+  },
+)
 
-// router.get(
-//   'videoList',
-//   async (request: Request, response: Response, next: NextFunction) => {
-//     response.status(200).json("{'msg':'Video'}")
-//   },
-// )
+//delete song by id
+router.delete(
+  '/delete/:id',
+  async (request: Request, response: Response, next: NextFunction) => {
+    const id = +request.params.id
+    VideoLogic.deleteSong(id)
+    response.status(204).json()
+  },
+)
+
 router.get(
   '/newCat/:catName',
   async (request: Request, response: Response, next: NextFunction) => {
-    console.log('in video routes')
     response
       .status(201)
-      .json(await VideoLogicMYSQL.addCategory(request.params.catName))
+      .json(await VideoLogic.addCategory(request.params.catName))
   },
 )
 
 router.get(
   '/allCat',
   async (request: Request, response: Response, next: NextFunction) => {
-    response.status(200).json(await VideoLogicMYSQL.getAllCategories())
+    response.status(200).json(await VideoLogic.getAllCategories())
   },
 )
 

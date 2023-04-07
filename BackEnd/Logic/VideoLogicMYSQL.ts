@@ -16,11 +16,17 @@ const addSong = async (newSong: Song) => {
 
 const updateSong = (song: Song) => {}
 
-const deleteSong = (id: number) => {}
-
+const deleteSong = (id: number) => {
+  const SQLcommand = `DELETE FROM youtube.songs WHERE id=${id}`
+  dal_mysql.execute(SQLcommand)
+  return true
+}
 const getSongById = (id: number) => {}
 
-const getAllSongs = () => {}
+const getAllSongs = async () => {
+  const SQLcommand = `SELECT * FROM youtube.songs`
+  return await dal_mysql.execute(SQLcommand)
+}
 
 const createSongsTable = () => {
   const SQLcommand = `CREATE TABLE IF NOT EXISTS youtube.songs
