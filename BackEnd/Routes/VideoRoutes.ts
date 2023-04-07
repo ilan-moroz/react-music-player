@@ -17,7 +17,7 @@ router.post(
 )
 
 router.delete(
-  'deleVideo/:id',
+  'deleteVideo/:id',
   async (request: Request, response: Response, next: NextFunction) => {
     const videoId = +request.params.id
     if (videoId === null || videoId < 1) {
@@ -34,13 +34,20 @@ router.get(
     response.status(200).json("{'msg':'Video'}")
   },
 )
-
-router.post(
-  'newCat',
+router.get(
+  '/newCat/:catName',
   async (request: Request, response: Response, next: NextFunction) => {
-    const catName = request.body.params.catName
-    console.log(catName)
-    // response.status(200).json(VideoLogicMYSQL.addCategory(catName))
+    console.log('in video routes')
+    response
+      .status(201)
+      .json(await VideoLogicMYSQL.addCategory(request.params.catName))
+  },
+)
+
+router.get(
+  '/',
+  async (request: Request, response: Response, next: NextFunction) => {
+    response.status(200).json('Controller working !!!')
   },
 )
 

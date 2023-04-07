@@ -6,6 +6,7 @@ import router from './Routes/VideoRoutes'
 import loginRouter from './Routes/LoginRoutes'
 import config from './Utils/Config'
 import logic from './Logic/VideoLogicMYSQL'
+import ErrorHandler from './MiddleWare/route-not-found'
 
 //create server
 const server = express()
@@ -26,7 +27,7 @@ server.use(fileUpload({ createParentPath: true }))
 server.use(bodyParser.json())
 
 // how to use the routes
-server.use('api/v1/videos/', router)
+server.use('/videos', router)
 server.use('api/v1/users/', loginRouter)
 
 // create table if it doesn't exist
@@ -35,6 +36,7 @@ logic.createSongsTable()
 logic.createCategoriesTable()
 
 // handle error(route not exist)
+server.use('*', ErrorHandler)
 
 // start the server
 server.listen(config.webPort, () => {
