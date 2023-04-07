@@ -8,11 +8,12 @@ import VideoLogicMYSQL from '../Logic/VideoLogicMYSQL'
 const router = express.Router()
 
 router.post(
-  'addVideo',
+  '/addSong',
   async (request: Request, response: Response, next: NextFunction) => {
     const body = request.body
     console.log(body)
-    response.status(201).json("{'msg':'video uploaded'}")
+    // response.status(201).json("{'msg':'video uploaded'}")
+    response.status(200)
   },
 )
 

@@ -1,7 +1,7 @@
 import { OkPacket } from 'mysql'
-import Song from '../../src/model/Song'
 import Category from '../../src/model/Cat'
 import dal_mysql from '../Utils/dal_mysql'
+import Song from '../Models/Song'
 
 const addSong = (newSong: Song) => {}
 
