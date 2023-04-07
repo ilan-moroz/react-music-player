@@ -27,11 +27,11 @@ const createSongsTable = () => {
 
 const createCategoriesTable = () => {
   const SQLcommand = `
-    CREATE TABLE IF NOT EXISTS youtube.category (
-        id INT NOT NULL AUTO_INCREMENT,
-        name VARCHAR(45) NOT NULL,
-        PRIMARY KEY (id),
-        UNIQUE INDEX name_UNIQUE (name ASC) VISIBLE);`
+    CREATE TABLE IF NOT EXISTS youtube.category
+    (id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(45) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE INDEX name_UNIQUE (name ASC) VISIBLE);`
   return dal_mysql.execute(SQLcommand)
 }
 
