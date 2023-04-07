@@ -10,9 +10,9 @@ const router = express.Router()
 router.post(
   '/addSong',
   async (request: Request, response: Response, next: NextFunction) => {
-    const body = request.body
-    console.log(body)
-    response.status(200).json(await VideoLogicMYSQL.addSong(body))
+    const newSong = request.body
+    console.log(newSong)
+    response.status(200).json(await VideoLogicMYSQL.addSong(newSong))
   },
 )
 
