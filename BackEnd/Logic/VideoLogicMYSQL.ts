@@ -3,7 +3,16 @@ import Category from '../../src/model/Cat'
 import dal_mysql from '../Utils/dal_mysql'
 import Song from '../Models/Song'
 
-const addSong = (newSong: Song) => {}
+const addSong = async (newSong: Song) => {
+  const SQLcommand = `
+  INSERT INTO youtube.songs 
+  (url, songName, songImg, category, videoFile) 
+  VALUES 
+  ('${newSong.url}', '${newSong.songName}',
+  '${newSong.songImg}', ${newSong.category},'');`
+  const result: OkPacket = await dal_mysql.execute(SQLcommand)
+  return result.insertId
+}
 
 const updateSong = (song: Song) => {}
 
