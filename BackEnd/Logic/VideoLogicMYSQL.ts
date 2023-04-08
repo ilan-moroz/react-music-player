@@ -28,6 +28,7 @@ const deleteSong = (id: number) => {
   const SQLcommand = `DELETE FROM youtube.songs WHERE id=${id}`
   return dal_mysql.execute(SQLcommand)
 }
+
 const getSongById = async (id: number) => {
   return await dal_mysql.execute(`SELECT * FROM youtube.songs WHERE id =${id}`)
 }
@@ -69,7 +70,10 @@ const addCategory = async (newCategory: string) => {
   return categoryId
 }
 
-const deleteCategory = (id: number) => {}
+const deleteCategory = (id: number) => {
+  const SQLcommand = `DELETE FROM youtube.category WHERE id=${id}`
+  return dal_mysql.execute(SQLcommand)
+}
 
 const updateCategory = (cat: typeof Category) => {}
 

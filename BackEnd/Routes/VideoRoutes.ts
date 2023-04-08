@@ -44,6 +44,16 @@ router.delete(
   },
 )
 
+//delete category by id
+router.delete(
+  '/deleteCat/:id',
+  async (request: Request, response: Response, next: NextFunction) => {
+    const id = +request.params.id
+    VideoLogic.deleteCategory(id)
+    response.status(204).json()
+  },
+)
+
 router.get(
   '/newCat/:catName',
   async (request: Request, response: Response, next: NextFunction) => {
