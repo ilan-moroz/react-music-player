@@ -20,25 +20,27 @@ function AddSong(): JSX.Element {
   } = useForm<Song>()
 
   const send = (userData: Song) => {
-    let songs: Song[] = []
     const songIdentifier = userData.url.split('=')[1]
     axios
       .get(
         `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${songIdentifier}&fields=items(id%2Csnippet)&key=${apiKey}`,
       )
-      .then((response) => {
+      .then(async (response) => {
         console.log(response)
         setSongName(response.data.items[0].snippet.title)
         setImg(response.data.items[0].snippet.thumbnails.medium.url)
         userData.songImg = response.data.items[0].snippet.thumbnails.medium.url
         userData.songName = response.data.items[0].snippet.title
         userData.songInfo = response.data.items[0].snippet.description
-        songs = localStorage.getItem('songs')
-          ? JSON.parse(localStorage.getItem('songs') || '[]')
-          : []
-        songs.push(userData)
-        localStorage.setItem('songs', JSON.stringify(songs))
-        navigate('/')
+        axios
+          .post('http://localhost:8080/api/v1/videos/addSong', userData)
+          .then((response) => {
+            console.log(response)
+            navigate('/')
+          })
+          .catch((error) => {
+            console.error(error)
+          })
       })
   }
 
