@@ -9,7 +9,7 @@ const addSong = async (newSong: Song) => {
   (url, songName, songImg, category, videoFile) 
   VALUES 
   ('${newSong.url}', '${newSong.songName}',
-  '${newSong.songImg}', ${newSong.category},'');`
+  '${newSong.songImg}', '${newSong.category}','');`
   const result: OkPacket = await dal_mysql.execute(SQLcommand)
   return result.insertId
 }
@@ -42,8 +42,8 @@ const createSongsTable = () => {
     (id INT NOT NULL AUTO_INCREMENT,
     url VARCHAR(45) NOT NULL,
     songName VARCHAR(45) NOT NULL,
-    songImg VARCHAR(45) NOT NULL,
-    category INT NOT NULL,
+    songImg VARCHAR(300) NOT NULL,
+    category VARCHAR(45) NOT NULL,
     videoFile VARCHAR(45) NOT NULL,
     PRIMARY KEY(id));`
   return dal_mysql.execute(SQLcommand)
