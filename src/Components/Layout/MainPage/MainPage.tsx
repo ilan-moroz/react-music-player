@@ -2,17 +2,21 @@ import { useEffect, useState } from 'react'
 import Song from '../../../model/Song'
 import SingleSong from '../SingleSong/SingleSong'
 import './MainPage.css'
+import axios from 'axios'
 
 function MainPage(): JSX.Element {
   const [songs, setSongs] = useState<Song[]>([])
-
   useEffect(() => {
-    setSongs(
-      localStorage.getItem('songs')
-        ? JSON.parse(localStorage.getItem('songs') || '[]')
-        : [],
-    )
+    axios
+      .get('http://localhost:8080/api/v1/videos/allSongs')
+      .then((response) => {
+        setSongs(response.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }, [])
+
   return (
     <div className="MainPage">
       <h1>
