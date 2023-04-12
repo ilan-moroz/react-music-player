@@ -1,11 +1,41 @@
 import { Button } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 import './Player.css'
+import axios from 'axios'
 
 function Player(): JSX.Element {
   const params = useParams()
   const navigate = useNavigate()
   const songId = params.videoId
+
+  const getSongId = async (songId: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/v1/videos/songId/${songId}`,
+      )
+      return response.data[0].id
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const deleteSong = async (id: number) => {
+    try {
+      return await axios.delete(
+        `http://localhost:8080/api/v1/videos/delete/${id}`,
+      )
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleDeleteSong = async (songId: string) => {
+    const id = await getSongId(songId)
+    console.log(id)
+    await deleteSong(id)
+    navigate('/')
+  }
+
   return (
     <div className="Player">
       <iframe
@@ -31,7 +61,7 @@ function Player(): JSX.Element {
       <Button
         variant="outlined"
         color="warning"
-        onClick={() => navigate('/')}
+        onClick={() => songId && handleDeleteSong(songId)}
         style={{ width: '50%' }}
       >
         Delete Song

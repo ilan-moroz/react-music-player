@@ -3,6 +3,7 @@ import VideoLogic from '../Logic/VideoLogicMYSQL'
 
 const router = express.Router()
 
+// Add song
 router.post(
   '/addSong',
   async (request: Request, response: Response, next: NextFunction) => {
@@ -12,13 +13,23 @@ router.post(
   },
 )
 
-router.put(
-  '/update',
+// Get song id
+router.get(
+  '/songId/:song',
   async (request: Request, response: Response, next: NextFunction) => {
-    response.status(202).json(await VideoLogic.updateSong(request.body))
+    const song = request.params.song
+    response.status(202).json(await VideoLogic.getSongId(song))
   },
 )
 
+// router.put(
+//   '/update',
+//   async (request: Request, response: Response, next: NextFunction) => {
+//     response.status(202).json(await VideoLogic.updateSong(request.body))
+//   },
+// )
+
+// get all songs
 router.get(
   '/allSongs',
   async (request: Request, response: Response, next: NextFunction) => {
@@ -27,12 +38,12 @@ router.get(
 )
 
 //get song by id
-router.get(
-  '/getSong/:id',
-  async (request: Request, response: Response, next: NextFunction) => {
-    response.status(200).json(await VideoLogic.getSongById(+request.params.id))
-  },
-)
+// router.get(
+//   '/getSong/:id',
+//   async (request: Request, response: Response, next: NextFunction) => {
+//     response.status(200).json(await VideoLogic.getSongById(+request.params.id))
+//   },
+// )
 
 //delete song by id
 router.delete(
@@ -45,31 +56,34 @@ router.delete(
 )
 
 //delete category by id
-router.delete(
-  '/deleteCat/:id',
-  async (request: Request, response: Response, next: NextFunction) => {
-    const id = +request.params.id
-    VideoLogic.deleteCategory(id)
-    response.status(204).json()
-  },
-)
+// router.delete(
+//   '/deleteCat/:id',
+//   async (request: Request, response: Response, next: NextFunction) => {
+//     const id = +request.params.id
+//     VideoLogic.deleteCategory(id)
+//     response.status(204).json()
+//   },
+// )
 
-router.get(
-  '/newCat/:catName',
-  async (request: Request, response: Response, next: NextFunction) => {
-    response
-      .status(201)
-      .json(await VideoLogic.addCategory(request.params.catName))
-  },
-)
+//add category
+// router.get(
+//   '/newCat/:catName',
+//   async (request: Request, response: Response, next: NextFunction) => {
+//     response
+//       .status(201)
+//       .json(await VideoLogic.addCategory(request.params.catName))
+//   },
+// )
 
-router.get(
-  '/allCat',
-  async (request: Request, response: Response, next: NextFunction) => {
-    response.status(200).json(await VideoLogic.getAllCategories())
-  },
-)
+// get all categories
+// router.get(
+//   '/allCat',
+//   async (request: Request, response: Response, next: NextFunction) => {
+//     response.status(200).json(await VideoLogic.getAllCategories())
+//   },
+// )
 
+// TEST
 router.get(
   '/',
   async (request: Request, response: Response, next: NextFunction) => {

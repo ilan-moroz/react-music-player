@@ -1,5 +1,5 @@
 import { OkPacket } from 'mysql'
-import Category from '../../src/model/Cat'
+// import Category from '../../src/model/Cat'
 import dal_mysql from '../Utils/dal_mysql'
 import Song from '../Models/Song'
 
@@ -14,24 +14,24 @@ const addSong = async (newSong: Song) => {
   return result.insertId
 }
 
-const updateSong = async (song: Song) => {
-  const SQLcommand = `
-    UPDATE youtube.songs 
-    SET url = '${song.url}', songName = '${song.songName}',
-    songImg = '${song.songImg}', category = ${song.category},
-    videoFile = '${song.videoFile}' 
-    WHERE (id = ${song.id});`
-  return await dal_mysql.execute(SQLcommand)
-}
+// const updateSong = async (song: Song) => {
+//   const SQLcommand = `
+//     UPDATE youtube.songs
+//     SET url = '${song.url}', songName = '${song.songName}',
+//     songImg = '${song.songImg}', category = ${song.category},
+//     videoFile = '${song.videoFile}'
+//     WHERE (id = ${song.id});`
+//   return await dal_mysql.execute(SQLcommand)
+// }
 
 const deleteSong = (id: number) => {
   const SQLcommand = `DELETE FROM youtube.songs WHERE id=${id}`
   return dal_mysql.execute(SQLcommand)
 }
 
-const getSongById = async (id: number) => {
-  return await dal_mysql.execute(`SELECT * FROM youtube.songs WHERE id =${id}`)
-}
+// const getSongById = async (id: number) => {
+//   return await dal_mysql.execute(`SELECT * FROM youtube.songs WHERE id =${id}`)
+// }
 const getAllSongs = async () => {
   const SQLcommand = `SELECT * FROM youtube.songs`
   return await dal_mysql.execute(SQLcommand)
@@ -59,40 +59,46 @@ const createCategoriesTable = () => {
   return dal_mysql.execute(SQLcommand)
 }
 
-//categories
-const addCategory = async (newCategory: string) => {
-  //SQL command for adding new category
-  const SQLcommand = `INSERT INTO youtube.category (name) VALUES ('${newCategory}');`
-  console.log('sql>', SQLcommand)
-  const response: OkPacket = await dal_mysql.execute(SQLcommand)
-  const categoryId = response.insertId
-  console.log('New Id', categoryId, ' Message:', response.message)
-  return categoryId
-}
+// //categories
+// const addCategory = async (newCategory: string) => {
+//   //SQL command for adding new category
+//   const SQLcommand = `INSERT INTO youtube.category (name) VALUES ('${newCategory}');`
+//   console.log('sql>', SQLcommand)
+//   const response: OkPacket = await dal_mysql.execute(SQLcommand)
+//   const categoryId = response.insertId
+//   console.log('New Id', categoryId, ' Message:', response.message)
+//   return categoryId
+// }
 
-const deleteCategory = (id: number) => {
-  const SQLcommand = `DELETE FROM youtube.category WHERE id=${id}`
-  return dal_mysql.execute(SQLcommand)
-}
+// const deleteCategory = (id: number) => {
+//   const SQLcommand = `DELETE FROM youtube.category WHERE id=${id}`
+//   return dal_mysql.execute(SQLcommand)
+// }
 
-const updateCategory = (cat: typeof Category) => {}
+// const updateCategory = (cat: typeof Category) => {}
 
-const getAllCategories = async () => {
-  const SQLcommand = `SELECT * FROM youtube.category`
+// const getAllCategories = async () => {
+//   const SQLcommand = `SELECT * FROM youtube.category`
+//   return await dal_mysql.execute(SQLcommand)
+// }
+
+const getSongId = async (song: string) => {
+  const SQLcommand = `SELECT id FROM youtube.songs WHERE url = 'https://www.youtube.com/watch?v=${song}'`
   return await dal_mysql.execute(SQLcommand)
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   addSong,
-  updateSong,
+  getSongId,
+  // updateSong,
   deleteSong,
-  getSongById,
+  // getSongById,
   getAllSongs,
   createSongsTable,
   createCategoriesTable,
-  addCategory,
-  deleteCategory,
-  updateCategory,
-  getAllCategories,
+  // addCategory,
+  // deleteCategory,
+  // updateCategory,
+  // getAllCategories,
 }
