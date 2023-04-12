@@ -16,6 +16,8 @@ function Player(): JSX.Element {
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       ></iframe>
+      <br />
+      <br />
       <Button
         variant="outlined"
         color="success"
@@ -23,6 +25,16 @@ function Player(): JSX.Element {
         style={{ width: '50%' }}
       >
         Go Home
+      </Button>
+      <br />
+      <br />
+      <Button
+        variant="outlined"
+        color="warning"
+        onClick={() => navigate('/')}
+        style={{ width: '50%' }}
+      >
+        Delete Song
       </Button>
     </div>
   )
