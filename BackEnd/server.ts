@@ -3,7 +3,6 @@ import cors from 'cors'
 import express from 'express'
 import bodyParser from 'body-parser'
 import router from './Routes/VideoRoutes'
-import loginRouter from './Routes/LoginRoutes'
 import config from './Utils/Config'
 import logic from './Logic/VideoLogicMYSQL'
 import ErrorHandler from './MiddleWare/route-not-found'
@@ -28,7 +27,6 @@ server.use(bodyParser.json())
 
 // how to use the routes
 server.use('/api/v1/videos', router)
-server.use('/api/v1/users', loginRouter)
 
 // create table if it doesn't exist
 console.log('check if table exists')
